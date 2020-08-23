@@ -2,8 +2,8 @@
 
 namespace app\models;
 
-use core\Model;
+use Illuminate\Database\Eloquent\Model as Eloquent;
 
-class Home extends Model {
+class Home extends Eloquent {
 
 }

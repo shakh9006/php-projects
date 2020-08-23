@@ -21,6 +21,7 @@ define('ROOT_VIEW', ROOT_APP . 'views' . DS);
 /**
  * Autoload classes
  */
+require_once ROOT . DS . 'vendor' . DS . 'autoload.php';
 spl_autoload_register(function ($class_name) {
     $path = ROOT . DS . str_replace('\\', DS, $class_name) . '.php';
     if ( file_exists( $path ) ) {
