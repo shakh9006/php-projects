@@ -2,19 +2,16 @@
 
 namespace core\base;
 
-use core\base\View;
-
 /**
  * Class Controller
  * @package core\base
  */
-class Controller {
-
+abstract class Controller {
     /**
      * @param $action
      * @param array $data
      */
-    public function execAction($action, $data = []) {
+    public function processAction($action, $data = []) {
         call_user_func_array([$this, $action], $data);
     }
 
@@ -23,6 +20,12 @@ class Controller {
      * @param array $data
      */
     public function view($name, $data = []) {
-        echo View::render($name, $data);
+        $path = VIEWS_PATH . $name . '.php';
+        extract($data);
+        ob_start();
+        if (file_exists($path))
+          require_once $path;
+        echo ob_get_clean();
+        exit;
     }
 }

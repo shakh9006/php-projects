@@ -1,20 +1,20 @@
 <?php
 
 namespace app\controllers;
+
 use core\base\Controller;
 
 /**
  * Class MainController
  * @package app\controllers
  */
-class MainController extends Controller  {
-    public function testAction() {
-        $this->view('home', [
-            'name' => 'Alex',
-        ]);
-    }
-
+class MainController extends Controller {
+    /**
+     * Home Page
+     */
     public function indexAction() {
-        echo 123;
+        $this->view('home', [
+            'name' => '123'
+        ]);
     }
 }

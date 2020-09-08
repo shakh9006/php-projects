@@ -1,17 +1,20 @@
 <?php
+/**
+ * Routes
+ */
 
-use core\router\Route;
+use \core\Route;
 
 return [
     'routes' => [
-        new Route('contact', [
-           'action' => 'test',
-           'controller' => 'MainController',
+        new Route('/news', [
+            'action' => 'newsAction',
+            'controller' => 'NewsController'
         ]),
 
-        new Route('', [
-            'action' => 'index',
-            'controller' => 'MainController',
-        ]),
+        new Route('/', [
+            'action' => 'indexAction',
+            'controller' => 'MainController'
+        ])
     ]
 ];

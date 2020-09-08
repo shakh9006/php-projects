@@ -2,6 +2,10 @@
 
 namespace core\base;
 
-class Model {
+/**
+ * Class Model
+ * @package core\base
+ */
+abstract class Model {
 
 }

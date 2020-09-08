@@ -2,23 +2,18 @@
 
 namespace core;
 
-use core\exceptions\RouterException;
-use core\router\Router;
+use core\Exceptions\RouterException;
 
 /**
  * Class Application
  * @package core
  */
 class Application {
-
-    /**
-     * @throws exceptions\RouterException
-     */
     public static function run() {
-        $config = new Configurator('routes');
+        $configurator = Configurator::config('routes');
         try {
-            Router::route($config->routes);
-        } catch (RouterException $e) {
+            Router::route($configurator->routes);
+        } catch (RouterException $re) {
             echo "404!";
         }
     }

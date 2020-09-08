@@ -7,31 +7,31 @@ namespace core;
  * @package core
  */
 class Configurator {
-    private $data = [];
+
+    private static $config = [];
 
     /**
-     * Configurator constructor.
      * @param $name
+     * @return Configurator
      */
-    public function __construct($name)
-    {
-        $path = CONFIG_DIR . $name . '.php';
-        if ( file_exists($path) ) {
-            $this->data = require_once $path;
-        }
+    public static function config($name) {
+        $path = CONFIG_PATH . $name . '.php';
+        if (file_exists($path))
+        self::$config = require_once $path;
+
+        return new self();
     }
 
     /**
      * @param $name
-     * @return mixed|string
+     * @return mixed|null
      */
     public function __get($name)
     {
         // TODO: Implement __get() method.
-        if ( isset( $this->data[$name] ) ) {
-            return $this->data[$name];
-        }
+        if (isset(self::$config[$name]))
+            return self::$config[$name];
 
-        return '';
-    }
+        return null;
+    } 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace core\exceptions;
+namespace core\Exceptions;
 
 class RouterException extends \Exception {
 
