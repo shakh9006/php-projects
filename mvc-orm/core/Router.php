@@ -1,7 +1,6 @@
 <?php
 
 namespace core;
-
 use core\Exceptions\RouterException;
 
 /**
@@ -11,15 +10,14 @@ use core\Exceptions\RouterException;
 class Router {
     /**
      * @param $routes
-     * @param $data
      * @throws
      */
-    public static function route($routes, $data = []) {
+    public static function route($routes) {
        foreach ($routes as $route) {
-           if ($route->match()) {
+           if ( $route->match() ) {
                $action = $route->getAction();
                $controller = $route->getController();
-               self::navigate($action, $controller, $data);
+               self::navigate($action, $controller, $route);
            }
        }
     }
@@ -27,15 +25,17 @@ class Router {
     /**
      * @param $action
      * @param $controller
-     * @param array $data
+     * @param array $route
+     * @return boolean|mixed
      * @throws RouterException
      */
-    public static function navigate($action, $controller, $data = []) {
+    public static function navigate($action, $controller, $route) {
         if ($controller) {
             $ctrl = new $controller;
-            if (method_exists($ctrl, $action)) {
-                $ctrl->processAction($action, $data);
-                return;
+            if ( !empty($ctrl) && method_exists($ctrl, $action) ) {
+                $ctrl->setRoute($route);
+                $ctrl->processAction($action);
+                return true;
             }
         }
         throw new RouterException('Method not found!');

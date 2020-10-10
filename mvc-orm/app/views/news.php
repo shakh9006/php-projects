@@ -1,1 +1,1 @@
-<h1>Hello from news page</h1>
+News

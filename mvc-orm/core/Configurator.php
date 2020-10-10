@@ -26,12 +26,9 @@ class Configurator {
      * @param $name
      * @return mixed|null
      */
-    public function __get($name)
-    {
-        // TODO: Implement __get() method.
+    public function __get($name) {
         if (isset(self::$config[$name]))
             return self::$config[$name];
-
         return null;
     } 
 }

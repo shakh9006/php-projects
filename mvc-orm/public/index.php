@@ -25,4 +25,3 @@ spl_autoload_register( function ($className) {
 });
 
 \core\Application::run();
-
