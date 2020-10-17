@@ -30,19 +30,12 @@
             <li class="nav-item active">
                 <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
             </li>
-            <?php if ( isset($_SESSION['id']) ):?>
-                <li class="nav-item">
-                    <a class="nav-link" href="/profile/<?php echo $_SESSION['id']?>">Profile</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout">Logout</a>
-                </li>
-            <?php else:?>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
-                </li>
-            <?php endif;?>
+            <li class="nav-item">
+                <a class="nav-link" href="/profile/<?php echo $data['id']?>">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
         </ul>
     </div>
 
@@ -54,8 +47,11 @@
 <main role="main" class="container">
 
     <div class="starter-template">
-        <h1>Welcome, User!</h1>
-        <p class="lead">This is simple auth project and you are logged in.<br> All you get is this text and a mostly barebones HTML document.</p>
+        <h1>Welcome, <?php echo $data['username']?>!</h1>
+        <hr>
+        <p>Id: <?php echo $data['id']?></p>
+        <p>Name: <?php echo $data['username']?></p>
+        <p>email: <?php echo $data['email']?></p>
     </div>
 
 </main>

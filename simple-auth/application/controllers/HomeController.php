@@ -9,9 +9,10 @@ use core\base\Controller;
  */
 class HomeController extends Controller {
     public function indexAction() {
-        $id = $this->get_param('id');
-        $this->view('home/index', [
-            'id' => $id,
-        ]);
+        if ( !empty($_SESSION['id']) ) {
+            $this->view('home/index', []);
+        } else {
+            header('Location: '. SITE_URL . '/register');
+        }
     }
 }

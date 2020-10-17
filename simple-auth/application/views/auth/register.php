@@ -37,7 +37,9 @@
         </ul>
     </div>
 
-    <span class="navbar-brand" href="#">Simple Auth</span>
+    <?php if ( isset($_SESSION['name']) ):?>
+        <span class="navbar-brand"><?php echo $_SESSION['name']?></span>
+    <?php endif;?>
 </nav>
 
 <main role="main" class="container" style="max-width: 800px">

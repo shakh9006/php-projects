@@ -16,22 +16,22 @@
 })();
 
 function init_sign_in() {
-    let email = document.querySelector('#inputEmail')
-    let password = document.querySelector('#inputPassword')
-    return { email, password }
+    let email = document.querySelector('#inputEmail') || {}
+    let password = document.querySelector('#inputPassword') || {}
+    return { email: email.value, password: password.value }
 }
 
 function init_sign_up() {
-    const errorData = [];
-    let email = document.querySelector('#inputEmail')
-    let name = document.querySelector('#inputName')
-    let password = document.querySelector('#inputPassword')
-    let rePassword = document.querySelector('#inputPasswordRepeat')
+    const errorData = []
+    let email = document.querySelector('#inputEmail') || {}
+    let name = document.querySelector('#inputName') || {}
+    let password = document.querySelector('#inputPassword') || {}
+    let rePassword = document.querySelector('#inputPasswordRepeat') || {}
 
-    if ( name.length < 2 )
+    if ( name.value && name.value.length < 2 )
         errorData.push('Name field length must be at least 3')
 
-    if ( password !== rePassword )
+    if ( (Object.values(password).length && Object.values(rePassword).length) &&  password.value !== rePassword.value )
         errorData.push('Re-password is incorrect')
 
     if ( errorData.length ) {
@@ -39,22 +39,42 @@ function init_sign_up() {
         return false
     }
 
-    return { email, name, password }
+    return { email: email.value, name: name.value, password: password.value }
 }
 
 function render_info( type , data) {
+    if ( !(data && data.length) )
+        return
+
     let info_content = document.querySelector('#info-content')
-    console.log(info_content)
     info_content.className = type
     info_content.innerHTML = ''
 
     if ( typeof data === 'object' && !Array.isArray(data) )
         data = Object.values(data)
 
-    console.log(data)
     data.forEach(info => info_content.innerHTML += `<div class="info-item">${info}</div>` )
 }
 
-function send() {
-    console.log('send')
+function send(action, data) {
+    const xhr = new XMLHttpRequest()
+    let esc   = encodeURIComponent;
+    const url = Object.keys(data).map((k) => `${esc(k)}=${esc(data[k])}`).join('&')
+
+    xhr.open('GET', action + '?' + url)
+    xhr.send(JSON.stringify(data))
+    xhr.onload = () => {
+        if (xhr.status !== 200) {
+            alert(`Error ${xhr.status}: ${xhr.statusText}`)
+        } else {
+            const response = JSON.parse(xhr.response)
+            Object.keys(response).forEach(k => {
+                if ( typeof response[k] === "object" )
+                    render_info(k, response[k])
+
+                if ( response.success && response.redirect )
+                    window.location.replace(response.redirect)
+            })
+        }
+    }
 }
