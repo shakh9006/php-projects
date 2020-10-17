@@ -22,7 +22,7 @@ class Route {
      */
     private $uri;
 
-    private $data = [];
+    public $data = [];
 
     /**
      * @var array
@@ -35,8 +35,8 @@ class Route {
      * @param $data
      */
     public function __construct($uri, $data) {
-        $this->uri = $uri;
         $this->route_data = $data;
+        $this->uri        = explode('/', trim($uri, '/'));;
     }
 
     /**
@@ -112,7 +112,7 @@ class Route {
         if (count($uri_component) > count($this->uri))
             return false;
 
-        foreach ($this->$uri as $index => $current) {
+        foreach ($this->uri as $index => $current) {
             if ( isset($uri_component[$index]) && $uri_component[$index] === $current )
                 continue;
 
@@ -158,10 +158,10 @@ class Route {
 
     /**
      * @param $name
-     * @param null $default
+     * @param $default
      * @return mixed|null
      */
-    public function getParam($name, $default = null) {
+    public function get_param($name, $default) {
         if (isset($this->data[$name]))
             return $this->data[$name];
 
