@@ -10,6 +10,6 @@ spl_autoload_register(function ($class) {
 /**
  * Load helper functions
  */
-require_once AUTH_PATH . '/includes/config.php';
+require_once AUTH_PATH . '/config/config.php';
 require_once AUTH_PATH . '/includes/functions.php';
 require_once AUTH_PATH . '/config/routes.php';

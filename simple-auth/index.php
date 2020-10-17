@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  * Welcome!
  * This is simple auth project =).
@@ -21,4 +22,4 @@ define( 'SITE_URL', site_url() );
 /**
  * Run Project
  */
-Application::run();
+Application::init();

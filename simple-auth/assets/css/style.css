@@ -1,0 +1,26 @@
+#info-content {
+    display: flex;
+    opacity: 0;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    transition: opacity .2s linear;
+}
+
+#info-content.success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    opacity: 1;
+}
+
+#info-content.error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    opacity: 1;
+}

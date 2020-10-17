@@ -15,7 +15,9 @@
             padding: 3rem 1.5rem;
             text-align: center;
         }
+
     </style>
+    <link rel="stylesheet" href="<?php echo auth_assets('css/style.css')?>">
 </head>
 <body>
 
@@ -39,13 +41,36 @@
     <span class="navbar-brand" href="#">Simple Auth</span>
 </nav>
 
-<main role="main" class="container">
+<main role="main" class="container" style="max-width: 800px">
+    <form class="form-signin" id="form" action="/sign-in">
+        <div class="text-center mb-4">
+            <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+            <p>Have not account yet? <a href="/register">Register</a></p>
+            <div id="info-content"></div>
+        </div>
 
-    <div class="starter-template">
-        <h1>Welcome, User!</h1>
-        <p class="lead">This is simple auth project and you are logged in.<br> All you get is this text and a mostly barebones HTML document.</p>
-    </div>
+        <div class="form-label-group">
+            <label for="inputEmail">Email address</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+        </div>
+        <br>
 
+        <div class="form-label-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        </div>
+        <br>
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <p class="mt-5 mb-3 text-muted text-center">&copy; 2020</p>
+    </form>
 </main>
+<script src="<?php echo auth_assets('js/send.js')?>"></script>
 </body>
 </html>
